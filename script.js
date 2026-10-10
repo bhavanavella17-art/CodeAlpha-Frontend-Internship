@@ -1,113 +1,90 @@
-let currentImage = 0;
-
-let visibleImages = [];
+let display = document.getElementById("display");
 
 
-/* Filter Images */
+/* Add value to display */
 
-function filterImages(category) {
+function addValue(value) {
 
-    let images =
-        document.querySelectorAll(".image-box");
+    display.value += value;
 
-    images.forEach(function(image) {
+}
 
-        if (
-            category === "all" ||
-            image.classList.contains(category)
-        ) {
 
-            image.style.display = "block";
+/* Clear display */
 
-        } else {
+function clearDisplay() {
 
-            image.style.display = "none";
+    display.value = "";
 
+}
+
+
+/* Delete last character */
+
+function deleteLast() {
+
+    display.value =
+        display.value.slice(0, -1);
+
+}
+
+
+/* Calculate result */
+
+function calculate() {
+
+    try {
+
+        if (display.value === "") {
+            return;
         }
 
-    });
-
-}
-
-
-/* Open Image */
-
-function openImage(image) {
-
-    let allImages =
-        document.querySelectorAll(".image-box");
-
-    visibleImages = [];
-
-    allImages.forEach(function(box) {
-
-        if (box.style.display !== "none") {
-
-            let img =
-                box.querySelector("img");
-
-            visibleImages.push(img);
-
-        }
-
-    });
-
-
-    currentImage =
-        visibleImages.indexOf(image);
-
-
-    document.getElementById("largeImage").src =
-        image.src;
-
-    document.getElementById("lightbox").style.display =
-        "flex";
-
-}
-
-
-/* Close Image */
-
-function closeImage() {
-
-    document.getElementById("lightbox").style.display =
-        "none";
-
-}
-
-
-/* Next Image */
-
-function nextImage() {
-
-    currentImage++;
-
-    if (currentImage >= visibleImages.length) {
-
-        currentImage = 0;
+        display.value =
+            eval(display.value);
 
     }
 
-    document.getElementById("largeImage").src =
-        visibleImages[currentImage].src;
+    catch {
 
-}
-
-
-/* Previous Image */
-
-function previousImage() {
-
-    currentImage--;
-
-    if (currentImage < 0) {
-
-        currentImage =
-            visibleImages.length - 1;
+        display.value = "Error";
 
     }
 
-    document.getElementById("largeImage").src =
-        visibleImages[currentImage].src;
-
 }
+
+
+/* Keyboard Support */
+
+document.addEventListener("keydown", function(event) {
+
+    if (
+        (event.key >= "0" && event.key <= "9") ||
+        "+-*/.%".includes(event.key)
+    ) {
+
+        addValue(event.key);
+
+    }
+
+
+    if (event.key === "Enter") {
+
+        calculate();
+
+    }
+
+
+    if (event.key === "Backspace") {
+
+        deleteLast();
+
+    }
+
+
+    if (event.key === "Escape") {
+
+        clearDisplay();
+
+    }
+
+});

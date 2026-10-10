@@ -1,92 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Image Gallery</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Calculator</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <h1>Image Gallery</h1>
+    <div class="calculator">
 
-    <!-- Category Buttons -->
-    <div class="categories">
-        <button onclick="filterImages('all')">All</button>
-        <button onclick="filterImages('city')">City</button>
-        <button onclick="filterImages('animals')">Animals</button>
-        <button onclick="filterImages('nature')">Nature</button>
+        <input type="text"
+               id="display"
+               readonly>
+
+        <div class="buttons">
+
+            <!-- First Row -->
+            <button class="clear"
+                    onclick="clearDisplay()">
+                C
+            </button>
+
+            <button onclick="deleteLast()">
+                ⌫
+            </button>
+
+            <button onclick="addValue('%')">
+                %
+            </button>
+
+            <button class="operator"
+                    onclick="addValue('/')">
+                ÷
+            </button>
+
+
+            <!-- Second Row -->
+            <button onclick="addValue('7')">7</button>
+
+            <button onclick="addValue('8')">8</button>
+
+            <button onclick="addValue('9')">9</button>
+
+            <button class="operator"
+                    onclick="addValue('*')">
+                ×
+            </button>
+
+
+            <!-- Third Row -->
+            <button onclick="addValue('4')">4</button>
+
+            <button onclick="addValue('5')">5</button>
+
+            <button onclick="addValue('6')">6</button>
+
+            <button class="operator"
+                    onclick="addValue('-')">
+                −
+            </button>
+
+
+            <!-- Fourth Row -->
+            <button onclick="addValue('1')">1</button>
+
+            <button onclick="addValue('2')">2</button>
+
+            <button onclick="addValue('3')">3</button>
+
+            <button class="operator"
+                    onclick="addValue('+')">
+                +
+            </button>
+
+
+            <!-- Fifth Row -->
+            <button onclick="addValue('0')">
+                0
+            </button>
+
+            <button onclick="addValue('.')">
+                .
+            </button>
+
+            <button class="equal"
+                    onclick="calculate()">
+                =
+            </button>
+
+        </div>
+
     </div>
-
-    <!-- Gallery -->
-    <div class="gallery">
-
-        <!-- City -->
-        <div class="image-box city">
-            <img src="city1.png"
-                 onclick="openImage(this)">
-            <h3>City</h3>
-        </div>
-
-        <div class="image-box city">
-            <img src="city2.png"
-                 onclick="openImage(this)">
-            <h3>City</h3>
-        </div>
-
-        <!-- Animals -->
-        <div class="image-box animals">
-            <img src="animal1.png"
-                 onclick="openImage(this)">
-            <h3>Animals</h3>
-        </div>
-
-        <div class="image-box animals">
-            <img src="animal2.png"
-                 onclick="openImage(this)">
-            <h3>Animals</h3>
-        </div>
-
-    
-
-        <!-- Nature -->
-        <div class="image-box nature">
-            <img src="nature1.png"
-                 onclick="openImage(this)">
-            <h3>Nature</h3>
-        </div>
-
-        <div class="image-box nature">
-            <img src="nature2.png"
-                 onclick="openImage(this)">
-            <h3>Nature</h3>
-        </div>
-
-    </div>
-
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-
-        <span class="close" onclick="closeImage()">×</span>
-
-        <img id="largeImage">
-
-        <div class="navigation">
-
-            <button onclick="previousImage()">❮ Previous</button>
-
-            <button onclick="nextImage()">Next ❯</button>
-
-        </div>
-
-    </div>
-
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
